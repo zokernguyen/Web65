@@ -1,0 +1,2 @@
+npm init -y: instant package create.
+package.json "type": "module" = ES6 import/export syntax.
