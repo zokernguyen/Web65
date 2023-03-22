@@ -11,9 +11,11 @@
 
 ## 2.1 req.querry/req.params & req.body
 
-- **GET, DELETE method**: các bộ lọc/điều kiện được truyền qua req.querry và req.params để trả kết quả tương ứng cho client, còn req.body không hề chứa data nào.
+- **GET, DELETE method**: các bộ lọc/điều kiện được truyền qua req.querry và req.params để trả kết quả tương ứng cho client, còn req.body không hề chứa data nào ({}).
 
 - **PUT, PATCH, POST method** - là các phương thức được gửi đến server để thay đổi DB bằng data tương ứng chứa trong req.body. Các request này cũng chứa thông tin về bộ lọc/điều kiện trong req.querry/req.params để xác định đối tượng nào trong DB sẽ được thay đổi.
+_
+- Moi request deu co body, nen trong logic xu ly co the lam dc nhieu chuc nang hon so voi ten goi cua method do._
 
 **Exp:** 
 
