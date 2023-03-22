@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>User CRUD</title>
+  </head>
+  <body>
+    <h1>User CRUD</h1>
+    <h2>Update User</h2>
+    <form id="update-form">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" />
+      <button type="submit">Update User</button>
+    </form>
+    <h2>Create User</h2>
+    <form id="create-form">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" />
+      <button type="submit">Create User</button>
+    </form>
+    <h2>Delete User</h2>
+    <form id="delete-form">
+      <label for="id">User ID:</label>
+      <input type="number" id="id" name="id" />
+      <button type="submit">Delete User</button>
+    </form>
+    <script>
+      // Define the base URL for the API
+      const baseUrl = "http://localhost:3000";
+
+      // Get the update form element
+      const updateForm = document.getElementById("update-form");
+
+      // Add an event listener to the update form
+      updateForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const id = prompt("Enter the user ID:");
+        const name = updateForm.elements.name.value;
+        const url = `${baseUrl}/users/${id}`;
+        fetch(url, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ name }),
+        })
+          .then((response) => response.json())
+          .then((user) => alert(`User ${user.id} updated: ${user.name}`))
+          .catch((error) => console.error(error));
+      });
+
+      // Get the create form element
+      const createForm = document.getElementById("create-form");
+
+      // Add an event listener to the create form
+      createForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const name = createForm.elements.name.value;
+        const url = `${baseUrl}/users`;
+        fetch(url, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ name }),
+        })
+          .then((response) => response.json())
+          .then((user) => alert(`User created: ${user.name}`))
+          .catch((error) => console.error(error));
+      });
+
+      // Get the delete form element
+      const deleteForm = document.getElementById("delete-form");
+
+      // Add an event listener to the delete form
+      deleteForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const id = deleteForm.elements.id.value;
+        const url = `${baseUrl}/users/${id}`;
+        fetch(url, {
+          method: "DELETE",
+        })
+          .then((response) => response.text())
+          .then((message) => alert(message))
+          .catch((error) => console.error(error));
+      });
+    </script>
+  </body>
+</html>
