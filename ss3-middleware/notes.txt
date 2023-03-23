@@ -1,6 +1,0 @@
-# 1. HTTP Methods
-- fetch = get (by default)
-
-# 2. Status Code
-
-# 3. Middleware
