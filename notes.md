@@ -14,14 +14,15 @@
 
 - npm init -y: instant package create without answering any package.json questions.
 - package.json config:
-  - "type": "module" = ES6 import/export syntax.
-  - "start": "nodemon index.js" //use "npm start" command in terminal to run app with nodemon. Có thể sử dụng thêm flag --inspect để enable node debugger console. 
-- localhost = 127.0.0.1
-  
+  + "type": "module" = ES6 import/export syntax.
+  + "start": "nodemon index.js" //use "npm start" command in terminal to run app with nodemon. Có thể sử dụng thêm flag --inspect để enable node debugger console. 
+- localhost = 127.0.0.1 by default.
+
+-----
 # 2. File operating with fs (File System)
 
 
-
+-----
 # 3. CRUD with GET, PUT, POST & DELETE
 
 ## 3.1. 3.1 req.querry/req.params & req.body
@@ -77,8 +78,11 @@ _Khi truyền các querry và params vào method, cần gán chúng vào req.que
  # 3.2 HTTP response status codes:
 
  See [Codes list](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status)
+ 
+ -----
  # 4. Middlewares
  
+ -----
  # 5. SSR (Server side rendering) & CSR (Client side rendering)
 
 - Thuật ngữ chỉ nơi render code (html). Với các trang sử dụng cách thức SSR, server sẽ trả về toàn bộ code htlm cấu trúc và nội dung của trang web. Còn các trang CSR, server chỉ trả về code html dạng khung/template tối giản (hay thẻ div/main trống), sau đó browser phải đọc các file script, .js (ví dụ script FE viết bằng reactJS) để append nội dung chi tiết vào khung html để render ra trang web đầy đủ.
@@ -87,4 +91,6 @@ _Khi truyền các querry và params vào method, cần gán chúng vào req.que
 
 - CSR sẽ đem đến UX mượt và nhanh hơn khi chuyển trang/tương tác, do việc render lại trang được thực hiện trên chính browser của client, nhưng truy cập lần đầu sẽ chậm hơn so với SSR.
 
+-----
 # 6. Database with MongoDB
+
