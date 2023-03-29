@@ -1,5 +1,5 @@
 import express from "express";
-import fs from "fs";
+import fs, { appendFile } from "fs";
 import path from "path";
 import { v4 as uuidv4 } from "uuid";
 import auth from "../middlewares/auth.js";
@@ -7,6 +7,7 @@ import getTodos from "../middlewares/getTodos.js";
 import logger from "../middlewares/logger.js";
 const todoRouter = express.Router();
 const TODOS_PATH = path.join("data", "todo.json");
+
 
 //get all todos using getData middleware
 todoRouter.get("/", auth, getTodos, (req, res) => {

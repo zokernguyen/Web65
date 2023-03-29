@@ -1,16 +1,9 @@
+import jwt from "jsonwebtoken";
+
 const auth = (req, res, next) => {
+    const payload = req.body;
+    const token = jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET, { expiresIn: "45s" });
 
-    //validate token
-    const tokenIsValid = true;
-    console.log("Access granted");
-
-    if (tokenIsValid) {
-        next();
-    } else {
-        res.status(401).json({
-            message: "Unauthorized",
-        });
-    }
 }
 
 export default auth;

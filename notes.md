@@ -95,6 +95,12 @@ _Xác thực và cấp quyền cho người dùng._
 
 - Token cần được bảo mật tuyệt đối. Để tăng khả năng bảo mật, có thể set expiration duration cho token.
 
+- Cách lấy token và lưu token từ front-end? fetch(), axios, cookies.
+
+- Bearer = authorization type/standard. [See more here.](https://www.rfc-editor.org/rfc/rfc6750)
+
+- Bscript npm.
+
  -----
  # 7. SSR (Server side rendering) & CSR (Client side rendering)
 
