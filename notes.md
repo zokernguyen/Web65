@@ -3,10 +3,11 @@
 - [2. File operating with fs (File System)](#2-file-operating-with-fs-file-system)
 - [3. CRUD with GET, PUT, POST \& DELETE](#3-crud-with-get-put-post--delete)
   - [3.1. 3.1 req.querry/req.params \& req.body](#31-31-reqquerryreqparams--reqbody)
-- [3.2 HTTP response status codes:](#32-http-response-status-codes)
-- [4. Middlewares](#4-middlewares)
-- [5. SSR (Server side rendering) \& CSR (Client side rendering)](#5-ssr-server-side-rendering--csr-client-side-rendering)
-- [6. Database with MongoDB](#6-database-with-mongodb)
+- [4. 3.2 HTTP response status codes:](#4-32-http-response-status-codes)
+- [5. Middlewares](#5-middlewares)
+- [6. Authentication and Authorization with JWT](#6-authentication-and-authorization-with-jwt)
+- [7. SSR (Server side rendering) \& CSR (Client side rendering)](#7-ssr-server-side-rendering--csr-client-side-rendering)
+- [8. Database with MongoDB](#8-database-with-mongodb)
 
 -----
 
@@ -75,15 +76,27 @@ _Khi truyền các querry và params vào method, cần gán chúng vào req.que
   });
 ```
  
- # 3.2 HTTP response status codes:
+ # 4. 3.2 HTTP response status codes:
 
  See [Codes list](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status)
  
  -----
- # 4. Middlewares
+ # 5. Middlewares
  
  -----
- # 5. SSR (Server side rendering) & CSR (Client side rendering)
+ # 6. Authentication and Authorization with JWT
+_Xác thực và cấp quyền cho người dùng._
+
+[See Docs here.](https://jwt.io/)
+
+- Mô hình web hiện đại có thể bao gồm nhiều server hoạt động cùng lúc để cung cấp các micro-service khác nhau, khiến phương thức session authorization không còn hiệu quả. Bởi vì với mỗi req, load-balancer chỉ điều hướng req đó đến 1 server duy nhất để xử lý và thông tin người dùng cũng chỉ được lưu trữ tại server này. Khi có một req mới cần được xử lý tại server khác, server này sẽ không nắm được thông tin người dùng trước đó.
+
+- JWT tạo một token cho client nắm giữ, và sẽ được gửi kèm cùng req. Nếu token sau khi được server decode ra là hợp lệ, thì req sẽ được xử lý mà không cần phải chuyển thông tin người dùng qua lại giữa từng server (trong trường hợp tất cả các service/server share cùng secret key token này).
+
+- Token cần được bảo mật tuyệt đối. Để tăng khả năng bảo mật, có thể set expiration duration cho token.
+
+ -----
+ # 7. SSR (Server side rendering) & CSR (Client side rendering)
 
 - Thuật ngữ chỉ nơi render code (html). Với các trang sử dụng cách thức SSR, server sẽ trả về toàn bộ code htlm cấu trúc và nội dung của trang web. Còn các trang CSR, server chỉ trả về code html dạng khung/template tối giản (hay thẻ div/main trống), sau đó browser phải đọc các file script, .js (ví dụ script FE viết bằng reactJS) để append nội dung chi tiết vào khung html để render ra trang web đầy đủ.
 
@@ -92,5 +105,5 @@ _Khi truyền các querry và params vào method, cần gán chúng vào req.que
 - CSR sẽ đem đến UX mượt và nhanh hơn khi chuyển trang/tương tác, do việc render lại trang được thực hiện trên chính browser của client, nhưng truy cập lần đầu sẽ chậm hơn so với SSR.
 
 -----
-# 6. Database with MongoDB
+# 8. Database with MongoDB
 
