@@ -1,9 +1,9 @@
 GET http://localhost:6000/posts
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJab2tlciIsImlhdCI6MTY4MDA3NzEyMX0.LkIekS9m5d17LZL9yDDHcIsUQ3vVhtb0t2nWvZhTHQM
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidXNlcm5hbWUiOiJIZW5yeSIsImlhdCI6MTY4MDMyMjQ2NiwiZXhwIjoxNjgwMzIyNDgxfQ.Xas92GN8IIO8MWq-AO07S69i_3xzTNmVKLH5TxxZJyM
 
 ###
-POST http://localhost:6000/login
+POST http://localhost:6666/login
 Content-Type: application/json
 
-{"username": "Zoker"}
+{"username": "Henry"}
 # req.body.username
