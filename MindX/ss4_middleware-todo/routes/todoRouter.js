@@ -2,15 +2,16 @@ import express from "express";
 import fs, { appendFile } from "fs";
 import path from "path";
 import { v4 as uuidv4 } from "uuid";
-import auth from "../middlewares/auth.js";
-import getTodos from "../middlewares/getTodos.js";
-import logger from "../middlewares/logger.js";
+import auth from "../middlewares/authMDW.js";
+import getTodosMDW from "../middlewares/getTodosMDW.js";
+import loggerMDW from "../middlewares/loggerMDW.js";
 const todoRouter = express.Router();
 const TODOS_PATH = path.join("data", "todo.json");
 
+//flow: register -> login -> read data
 
 //get all todos using getData middleware
-todoRouter.get("/", auth, getTodos, (req, res) => {
+todoRouter.get("/", auth, getTodosMDW, (req, res) => {
 
     try {
         res.status(200).json({
@@ -26,7 +27,7 @@ todoRouter.get("/", auth, getTodos, (req, res) => {
 });
 
 //get todo by id
-todoRouter.get("/:todoID", getTodos, (req, res) => {
+todoRouter.get("/:todoID", getTodosMDW, (req, res) => {
 
     //find todo in todos list by id param
     const todoID = req.params.todoID;
@@ -46,7 +47,7 @@ todoRouter.get("/:todoID", getTodos, (req, res) => {
 });
 
 //post new todo
-todoRouter.post("/", logger, getTodos, (req, res) => {
+todoRouter.post("/", loggerMDW, getTodosMDW, (req, res) => {
 
     console.log(req.log);
 
@@ -78,7 +79,7 @@ todoRouter.post("/", logger, getTodos, (req, res) => {
 });
 
 //edit todo by id
-todoRouter.put("/:idToEdit", getTodos, (req, res) => {
+todoRouter.put("/:idToEdit", getTodosMDW, (req, res) => {
 
     try {
 
@@ -113,7 +114,7 @@ todoRouter.put("/:idToEdit", getTodos, (req, res) => {
 });
 
 //delete todo by id
-todoRouter.delete("/:idToDel", getTodos, (req, res) => {
+todoRouter.delete("/:idToDel", getTodosMDW, (req, res) => {
 
     try {
 

@@ -3,7 +3,7 @@ import fs from "fs";
 
 const PATH = path.join("data", "todo.json");
 
-const getTodos = (req, res, next) => {
+const getTodosMDW = (req, res, next) => {
 
     try {
         //read data
@@ -25,4 +25,4 @@ const getTodos = (req, res, next) => {
     };
 }
 
-export default getTodos;
+export default getTodosMDW;

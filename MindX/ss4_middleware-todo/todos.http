@@ -1,0 +1,9 @@
+GET http://localhost:8080/todos
+
+###
+
+# Get todo by id param
+GET http://localhost:8080/todos/1
+
+###
+

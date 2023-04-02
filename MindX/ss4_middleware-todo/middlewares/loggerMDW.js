@@ -1,4 +1,4 @@
-const logger = (req, res, next) => {
+const loggerMDW = (req, res, next) => {
     const logTime = new Date().toISOString();
 
     req.log = `Request logged at ${logTime}`;
@@ -6,4 +6,4 @@ const logger = (req, res, next) => {
     next();
 }
 
-export default logger;
+export default loggerMDW;
