@@ -34,7 +34,7 @@
 
 # 3. CRUD with GET, PUT, POST & DELETE
 
-## 3.1.req.querry / req.params & req.body
+## 3.1. 3.1.req.querry / req.params & req.body
 
   - Thực chất, tên gọi của request method cũng chỉ mang tính chất hình thức.Ta có thể viết logic bên trong để nó xử lý bất kỳ thao tác nào.Ví dụ, có thể chỉ cần sử dụng duy nhất method GET nhưng vẫn có thể thực hiện CRUD.
 - ** GET, DELETE method **: các bộ lọc / điều kiện được truyền qua req.querry và req.params để trả kết quả tương ứng cho client, còn req.body không chứa data nào.
@@ -84,7 +84,7 @@ req.querry / req.params và req.body một cách phù hợp với method đó đ
     });
   ```
 
-## 3.2.HTTP response status codes:
+## 3.2. 3.2.HTTP response status codes:
 
 - Là code để thông báo trạng thái xử lý request, được gửi trả về clients trong res.headers.
 
@@ -104,7 +104,7 @@ req.querry / req.params và req.body một cách phù hợp với method đó đ
 
 - Mô hình web hiện đại có thể bao gồm nhiều server hoạt động cùng lúc để cung cấp các micro - service khác nhau, khiến phương thức session authorization không còn hiệu quả.Bởi vì với mỗi req, load - balancer chỉ điều hướng req đó đến 1 server duy nhất để xử lý và thông tin người dùng cũng chỉ được lưu trữ tại server này.Khi có một req mới cần được xử lý tại server khác, cần phải chuyển thông tin người dùng từ server trước đó sang để có thể xử lý req mới(bằng cách nhập lại thông tin người dùng một cách thủ công, hoặc phải viết các logic phức tap để chia sẽ thông tin này giữa các server). Vấn đề này sẽ được giải quyết nhờ JWT.
 
-## 5.1.Authentication
+## 5.1. 5.1.Authentication
 
   **Flow:**
 
@@ -132,9 +132,9 @@ req.querry / req.params và req.body một cách phù hợp với method đó đ
 
 ---
 
-### 7. Database with MongoDB
+### 6.0.1. Database with MongoDB
 
-# 7.1 MongoDB 101
+# 7. 7.1 MongoDB 101
 
 - Là một dạng document, NoSQL và open-source database.
 - SQL database: Database dạng bảng (Excel hoặc sheets).
@@ -144,7 +144,7 @@ req.querry / req.params và req.body một cách phù hợp với method đó đ
   + Table => Colection | Column => Field | Row => Document (object/JSON)
   + SQl chỉ cho phép lưu 1 giá trị duy nhất với mỗi ô dữ liệu (lưu theo chiều ngang); còn với document của Mongo, dữ liệu có thể được lưu một cách tự do, không bị ràng buộc bởi id hay phải đáp ứng số trường dữ liệu như kiểu bảng của SQL, miễn sao nó có format là 1 object JS (lưu theo chiều dọc) => Hệ csdl phi quan hệ.
 
-# 7.2 Filter data - MongoDB operators
+# 8. 7.2 Filter data - MongoDB operators
 
 - Các toán tử của Mongo được bắt đầu bằng ký tự '$'.
 - Cần đặt toán tử so sánh vào 1 cặp {}
