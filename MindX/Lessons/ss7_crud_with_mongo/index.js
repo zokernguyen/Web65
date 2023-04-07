@@ -6,7 +6,7 @@ import express from "express";
 
 import { client } from "./configs/connectDB.js";
 import authRouter from "./routes/authRouter.js";
-import studentsRoutes from "./routes/studentsRoutes.js";
+import studentsRouter from "./routes/studentsRouter.js";
 
 const app = express();
 const PORT = process.env.PORT;
@@ -19,7 +19,7 @@ async function main() {
 
         // set up middlewares
         app.use(express.json());
-        app.use("/api/v1/students", studentsRoutes);
+        app.use("/api/v1/students", studentsRouter);
         app.use("/api/v1/auth", authRouter);
 
         // run server

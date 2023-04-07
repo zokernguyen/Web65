@@ -1,16 +1,13 @@
 import express from "express";
-import jwt from "jsonwebtoken";
-
+import authRouter from "./routes/authRoutes.js";
+import studentRoutes from "./routes/studentRoutes.js";
 
 const app = express();
-const PORT = process.env.PORT || 6969;
-
 app.use(express.json());
 
-app.get("/", (req, res) => {
-    res.send("SS5 - JWT");
-})
+app.use("/api/v1/auth", authRouter);
+app.use("/api/v1/students", studentRoutes);
 
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
-});
+// Authorization <type> <credentials>
+
+app.listen(8080, () => { });
