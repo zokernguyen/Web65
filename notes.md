@@ -7,6 +7,8 @@
 - [4. Middlewares](#4-middlewares)
 - [5. Authentication and Authorization with JWT](#5-authentication-and-authorization-with-jwt)
 - [5.1. Authentication](#51-authentication)
+- [5.2 Authorization (phân quyền)](#52-authorization-phân-quyền)
+- [5.3 Refresh access token.](#53-refresh-access-token)
 - [6. SSR (Server side rendering) \& CSR (Client side rendering)](#6-ssr-server-side-rendering--csr-client-side-rendering)
 - [7.1. MongoDB 101](#71-mongodb-101)
 - [7.2 Filter data - MongoDB operators](#72-filter-data---mongodb-operators)
@@ -25,6 +27,8 @@
   + "start": "nodemon index.js" //use "npm start" command in terminal to run app with nodemon. Có thể sử dụng thêm flag --inspect để enable node debugger console.
 
 - localhost = 127.0.0.1 by default.
+
+- Lỗi Headers Sent... : fix bằng cách thêm return vào trước res. khi chack điều kiện logic.
 
 ---
 
@@ -165,6 +169,20 @@ req.query / req.params và req.body một cách phù hợp với method đó đ�
  [See more here.](https://www.rfc-editor.org/rfc/rfc6750)
 
 - Cách lấy token và lưu token từ front-end? fetch(), axios, cookies.
+
+# 5.2 Authorization (phân quyền)
+
+- Vì payload dùng để tạo ra token hoàn toàn do dev định nghĩa, ta có thể kèm theo thông tin về role (admin/basic user/permission level...) vào token. Ở các request có liên quan đến phân quyền (vd: chỉnh sửa, xóa thông tin, profile của user), có thể verify token và trích xuất ra thông tin về role của người thực hiện request, từ đó có thể cấp quyền/từ chối thao tác đó
+
+# 5.3 Refresh access token.
+
+- Thông thường để tăng tính bảo mật, access token chỉ tồn tại trong thời gian rất ngắn, và user sẽ phải liên tục cung cấp access token mới trong quá trình tương tác với ứng dụng. Nếu việc xác thực người dùng chỉ phụ thược duy nhất vào access token, cũng đồng nghĩa với việc user sẽ phải liên tục đăng nhập lại để lấy được token mới. Vấn đề này sẽ được giải quyết khi sử dụng thêm refresh token.
+
+- Refresh token thực chất cũng được tạo ra dựa trên payload mà người dùng cung cấp, nhưng có  1 secret key riêng để combine với payload, và đặc biệt là có thời hạn lâu hơn hẳn so với access token (vd 1 tháng/ 1 năm so với chỉ 30s của access token). Cách làm phổ biến là mỗi khi access token hết hạn, ứng dụng sẽ verify refresh token; vốn cũng mang theo payload để xác thực user giống như access token; để lấy ra các thông tin xác thực này và sign một access token mới trả về cho user tiếp tục thao tác trên ứng dụng. Như vậy, refresh token có đến 2 nhiệm vụ: kiểm tra xem ai là người đang muốn làm mới token (bằng cách verify refresh token) và cung cấp thông tin để tạo token mới sau khi kiểm tra (bằng cách lấy payload sau khi decode để sign một access token mới).
+
+_Cùng với access token mới, một refresh token mới cũng sẽ được tạo ra để đảm bảo tối đa tính bảo mật (các token xác thực liên tục bị thay đổi). Nghĩa là thực chất, thời hạn tồn tại tưởng chừng rất dài của refresh token chỉ mang tính kỹ thuật, đảm bảo rằng luôn một cách để tái sử dụng thông tin xác thực mà không bắt user phải đăng nhập lại nhiều lần_
+
+- Có thể sử dụng kết hợp nhiều cách thức để tăng thêm tính bảo mật cho refresh token, ví dụ lưu nó vào HTTPOnly Cookies, Redis, Redux store...
 
 ---
 
