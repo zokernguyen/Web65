@@ -35,7 +35,7 @@ authRouter.post("/register", async (req, res) => {
             data: {
                 id: newUser.insertedId,
                 username
-                //do not expose pw
+                //do not expose pw here
             }
         });
 

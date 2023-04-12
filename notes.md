@@ -13,6 +13,8 @@
 - [7.1. MongoDB 101](#71-mongodb-101)
 - [7.2 Filter data - MongoDB operators](#72-filter-data---mongodb-operators)
 - [7.3 CRUD with MongoDB:](#73-crud-with-mongodb)
+- [8. NextJS](#8-nextjs)
+- [Important](#important)
 
 ---
 
@@ -225,3 +227,17 @@ _Cùng với access token mới, một refresh token mới cũng sẽ được t
 # 7.3 CRUD with MongoDB:
 
 - Để sử dụng constructer ObjectId, cần từ khóa "new".
+
+---
+
+# 8. NextJS
+
+-CSS module: file css cần được đặt tên theo dạng <...>.module.css, cần được import dưới dạng biến vào component và được sử dụng như một cặp key-value trong object.
+# Important
+
+App development progress
+
+- Setup server,
+- Define routes/router with mock data,
+- Handle error cases,
+- Config + connect to DB to actually handle errors.
