@@ -1,5 +1,5 @@
 import React from 'react';
-import { registerService } from '../service/auth.service';
+import { registerService } from '../../../service/auth.service';
 
 const RegisterPage = () => {
 
@@ -38,7 +38,7 @@ const RegisterPage = () => {
                 <label htmlFor="password">Password: </label>
                 <input type="password" id="password" />
             </div>
-            <button type="submit">Login</button>
+            <button type="submit">Register</button>
         </form>
     );
 }

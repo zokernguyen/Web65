@@ -30,7 +30,7 @@
 
 - localhost = 127.0.0.1 by default.
 
-- Lỗi Headers Sent... : fix bằng cách thêm return vào trước res. khi chack điều kiện logic.
+- Lỗi ERR_HTTP_HEADERS_SENT: do gửi đi quá nhiều status khác nhau trong headers, fix bằng cách thêm return vào trước res. khi chack điều kiện logic.
 
 ---
 
@@ -165,7 +165,7 @@ req.query / req.params và req.body một cách phù hợp với method đó đ�
   > `jwt.verify();'
 
 - Token cần được bảo mật tuyệt đối. Để tăng khả năng bảo mật, có thể set expiration duration cho token.
-- Mặc định, 'Authorization' chính là trường trong Header để client đính kèm token khi gửi request. Khi dùng `jwt.verify()` để decode token, ta sẽ nhận lại được toàn bộ data đã dùng để mã hóa thành token để sử dụng cho những mục đích khác (như dịch mã token, lấy id người dùng để lọc data, ...). Trường này thường có định dạng là một bearer string: 
+- Mặc định, 'Authorization' chính là trường dữ liệu trong Header mà client dùng để đính kèm token khi gửi request. Khi dùng `jwt.verify()` để decode token, ta sẽ nhận lại được toàn bộ data đã dùng để mã hóa thành token để sử dụng cho những mục đích khác (như dịch mã token, lấy id người dùng để lọc data, ...). Trường này thường có định dạng là một bearer string: 
 
  >'Bearer <YOUR_TOKEN>'
  [See more here.](https://www.rfc-editor.org/rfc/rfc6750)
@@ -180,9 +180,9 @@ req.query / req.params và req.body một cách phù hợp với method đó đ�
 
 - Thông thường để tăng tính bảo mật, access token chỉ tồn tại trong thời gian rất ngắn, và user sẽ phải liên tục cung cấp access token mới trong quá trình tương tác với ứng dụng. Nếu việc xác thực người dùng chỉ phụ thược duy nhất vào access token, cũng đồng nghĩa với việc user sẽ phải liên tục đăng nhập lại để lấy được token mới. Vấn đề này sẽ được giải quyết khi sử dụng thêm refresh token.
 
-- Refresh token thực chất cũng được tạo ra dựa trên payload mà người dùng cung cấp, nhưng có  1 secret key riêng để combine với payload, và đặc biệt là có thời hạn lâu hơn hẳn so với access token (vd 1 tháng/ 1 năm so với chỉ 30s của access token). Cách làm phổ biến là mỗi khi access token hết hạn, ứng dụng sẽ verify refresh token; vốn cũng mang theo payload để xác thực user giống như access token; để lấy ra các thông tin xác thực này và sign một access token mới trả về cho user tiếp tục thao tác trên ứng dụng. Như vậy, refresh token có đến 2 nhiệm vụ: kiểm tra xem ai là người đang muốn làm mới token (bằng cách verify refresh token) và cung cấp thông tin để tạo token mới sau khi kiểm tra (bằng cách lấy payload sau khi decode để sign một access token mới).
+- Refresh token cũng được tạo ra dựa trên thông tin xác thực của người dùng (user payload), nhưng được combine cùng 1 secret key khác và có thời gian tồn tại lâu hơn hẳn so với access token. Mỗi khi access token hết hạn, ứng dụng sẽ verify refresh token để lấy ra user payload và dùng chúng để sign một access token mới. Với access token mới này, user có thể tiếp tục thao tác trên ứng dụng mà không phải đăng nhập lại. Như vậy, refresh token có đến 2 nhiệm vụ: kiểm tra xem ai là người đang muốn làm mới token (bằng cách verify refresh token để đối chiếu xem user payload trong refresh token có giống với user payload của access token đang dùng hay không) và sau đó dùng payload hợp lệ để tạo token mới.
 
-_Cùng với access token mới, một refresh token mới cũng sẽ được tạo ra để đảm bảo tối đa tính bảo mật (các token xác thực liên tục bị thay đổi). Nghĩa là thực chất, thời hạn tồn tại tưởng chừng rất dài của refresh token chỉ mang tính kỹ thuật, đảm bảo rằng luôn một cách để tái sử dụng thông tin xác thực mà không bắt user phải đăng nhập lại nhiều lần_
+_Cùng với access token mới, một refresh token mới cũng sẽ được tạo ra để đảm bảo tối đa tính bảo mật (các token xác thực liên tục bị thay đổi). Nghĩa là, thời gian tồn tại kéo dài của refresh token có ý nghĩa về mặt kỹ thuật là nhằm đảm bảo luôn có một khóa xác thực có hiệu lực để người dùng thao tác với ứng dụng; còn trong quá trình sử dụng nó sẽ luôn thay đổi cùng với access token. Ví dụ: user có thể đăng nhập và thoải mái sử dụng ứng dụng trong một phiên làm việc kéo dài nhiều giờ là nhờ refresh token liên tục tạo lại access token mới. Ở phiên làm việc tiếp theo cách đó nhiều ngày (khi access token cũ đã hết hạn từ lâu), nếu refresh token vẫn chưa hết hạn, nó ngay lập tức tạo được một access token mới để user sử dụng ứng dụng mà không phải đăng nhập lại_
 
 - Có thể sử dụng kết hợp nhiều cách thức để tăng thêm tính bảo mật cho refresh token, ví dụ lưu nó vào HTTPOnly Cookies, Redis, Redux store...
 

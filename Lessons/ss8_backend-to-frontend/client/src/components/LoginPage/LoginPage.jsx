@@ -1,5 +1,5 @@
 import React from "react";
-import { loginService } from "../service/auth.service";
+import { loginService } from "../../../service/auth.service";
 
 function LoginPage({ setToken }) {
     const onSubmit = async (e) => {

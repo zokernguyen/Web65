@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import "./App.css";
 import { getStudentsService } from "../service/students.service";
-import LoginPage from "./LoginPage";
-import HomePage from "./HomePage";
+import HomePage from "./components/Homepage/HomePage";
+import LoginPage from './components//LoginPage/LoginPage';
+import RegisterPage from './components/RegisterPage/RegisterPage';
 
 function App() {
 
@@ -34,6 +35,7 @@ function App() {
       ) : (
         <LoginPage setToken={setToken} />
       )}
+      <RegisterPage />
     </div>
   );
 }
