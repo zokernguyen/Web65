@@ -10,10 +10,14 @@
 - [5.2 Authorization (phân quyền)](#52-authorization-phân-quyền)
 - [5.3 Refresh access token.](#53-refresh-access-token)
 - [6. SSR (Server side rendering) \& CSR (Client side rendering)](#6-ssr-server-side-rendering--csr-client-side-rendering)
+- [7. MongoDB](#7-mongodb)
 - [7.1. MongoDB 101](#71-mongodb-101)
 - [7.2 Filter data - MongoDB operators](#72-filter-data---mongodb-operators)
 - [7.3 CRUD with MongoDB:](#73-crud-with-mongodb)
+- [7.4 MongoDB query \& Aggregation](#74-mongodb-query--aggregation)
+- [7.5 MongooseJS](#75-mongoosejs)
 - [8. NextJS](#8-nextjs)
+- [9. MVC Architecture](#9-mvc-architecture)
 - [Important](#important)
 
 ---
@@ -198,6 +202,8 @@ _Cùng với access token mới, một refresh token mới cũng sẽ được t
 
 ---
 
+# 7. MongoDB
+
 # 7.1. MongoDB 101
 
 - Là một dạng document, NoSQL và open-source database.
@@ -228,11 +234,24 @@ _Cùng với access token mới, một refresh token mới cũng sẽ được t
 
 - Để sử dụng constructer ObjectId, cần từ khóa "new".
 
+# 7.4 MongoDB query & Aggregation
+
+# 7.5 MongooseJS
+
+
 ---
 
 # 8. NextJS
 
 -CSS module: file css cần được đặt tên theo dạng <...>.module.css, cần được import dưới dạng biến vào component và được sử dụng như một cặp key-value trong object.
+
+---
+
+# 9. MVC Architecture
+
+
+---
+
 # Important
 
 App development progress

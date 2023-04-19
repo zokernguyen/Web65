@@ -13,7 +13,7 @@ function App() {
   //save access token to localStorage
   useEffect(() => {
 
-    //check if a access token is already stored in localStorage, use this token as a props payload to pass to another component that responsible for calling API
+    //check for access token, if it is already stored in localStorage, use this token as a props payload to pass to another component that responsible for calling API
     const tokenInLocalStorage = localStorage.getItem("token");
     if (tokenInLocalStorage) {
       setToken(tokenInLocalStorage);
@@ -26,7 +26,7 @@ function App() {
     getStudentsService().then((res) => setStudents(res));
   }, [token]);
 
-  //conditional rendering for time-issue, better inprove with router.
+  //conditional rendering due to time-issue, better inprove with router.
   return (
     <div className="App">
       {token ? (
