@@ -10,6 +10,10 @@ const authSlice = createSlice({
             error: false
         },
 
+        register: {
+            is
+        }
+
     },
 
     reducers: {

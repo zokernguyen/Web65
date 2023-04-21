@@ -18,6 +18,7 @@
 - [7.5 MongooseJS](#75-mongoosejs)
 - [8. NextJS](#8-nextjs)
 - [9. MVC Architecture](#9-mvc-architecture)
+- [10. Cookie](#10-cookie)
 - [Important](#important)
 
 ---
@@ -182,7 +183,7 @@ req.query / req.params và req.body một cách phù hợp với method đó đ�
 
 # 5.3 Refresh access token.
 
-- Thông thường để tăng tính bảo mật, access token chỉ tồn tại trong thời gian rất ngắn, và user sẽ phải liên tục cung cấp access token mới trong quá trình tương tác với ứng dụng. Nếu việc xác thực người dùng chỉ phụ thược duy nhất vào access token, cũng đồng nghĩa với việc user sẽ phải liên tục đăng nhập lại để lấy được token mới. Vấn đề này sẽ được giải quyết khi sử dụng thêm refresh token.
+- Thông thường để tăng tính bảo mật, access token chỉ tồn tại trong thời gian ngắn, còn user lại cần phải gửi kèm token trong mỗi request để có thể truy cập tài nguyên/sử dụng dịch vụ. Vì vậy, mỗi khi access token hết hạn, người dùng lại phải lặp lại bước xác thực (đăng nhập) để có token hợp lệ mới. Vấn đề này sẽ được giải quyết khi sử dụng thêm refresh token.
 
 - Refresh token cũng được tạo ra dựa trên thông tin xác thực của người dùng (user payload), nhưng được combine cùng 1 secret key khác và có thời gian tồn tại lâu hơn hẳn so với access token. Mỗi khi access token hết hạn, ứng dụng sẽ verify refresh token để lấy ra user payload và dùng chúng để sign một access token mới. Với access token mới này, user có thể tiếp tục thao tác trên ứng dụng mà không phải đăng nhập lại. Như vậy, refresh token có đến 2 nhiệm vụ: kiểm tra xem ai là người đang muốn làm mới token (bằng cách verify refresh token để đối chiếu xem user payload trong refresh token có giống với user payload của access token đang dùng hay không) và sau đó dùng payload hợp lệ để tạo token mới.
 
@@ -243,12 +244,17 @@ _Cùng với access token mới, một refresh token mới cũng sẽ được t
 
 # 8. NextJS
 
--CSS module: file css cần được đặt tên theo dạng <...>.module.css, cần được import dưới dạng biến vào component và được sử dụng như một cặp key-value trong object.
+- CSS module: file css cần được đặt tên theo dạng <...>.module.css, cần được import dưới dạng biến vào component và được sử dụng như một cặp key-value trong object `(style.classname)`. Cơ chế module này cho phép đặt tên class trùng nhau ở các component khác nhau.
 
 ---
 
 # 9. MVC Architecture
 
+---
+
+# 10. Cookie
+
+- Mỗi cookie chỉ hoạt động được với 1 domain.
 
 ---
 
